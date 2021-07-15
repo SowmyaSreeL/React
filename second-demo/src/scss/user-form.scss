@@ -1,0 +1,41 @@
+
+.new-user__controls {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+	text-align: left;
+}
+.new-user__control {
+	label {
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+	input {
+		font: inherit;
+		padding: 0.5rem;
+		border: 1px solid #ccc;
+		width: 100%;
+		max-width: 100%;
+        margin-bottom: 10px;
+	}
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 1px solid #40005d;
+    background-color: #40005d;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+    &:hover {
+        background-color: #510674;
+        border-color: #510674;
+    }
+    &:active {
+        background-color: #510674;
+        border-color: #510674;
+    }
+}
