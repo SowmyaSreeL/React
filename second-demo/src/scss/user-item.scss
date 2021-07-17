@@ -1,0 +1,9 @@
+.user-item  {
+    border: 2px solid black;
+    margin: 0;
+    padding: 5px;
+    margin-bottom: 10px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
