@@ -1,38 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import MainHeader from './components/MainHeader/MainHeader';
+import AuthContext from './store/autho-context';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const userLoggedInInfo = localStorage.getItem('user_logged_in');
-    if(userLoggedInInfo === '1') {
-      console.log('x')
-      setIsLoggedIn(true);
-    }
-  }, [])
-
-  const loginHandler = (email, password) => {
-    // We should of course check email and password
-    // But it's just a dummy/ demo anyways
-    localStorage.setItem('user_logged_in','1');
-    setIsLoggedIn(true);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem('user_logged_in');
-    setIsLoggedIn(false);
-  };
-
+  const authContext = useContext(AuthContext);
   return (
     <React.Fragment>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+      <MainHeader />
       <main>
-        {!isLoggedIn && <Login onLogin={loginHandler} />}
-        {isLoggedIn && <Home onLogout={logoutHandler} />}
+        {/* We are not using the context for Login, Home components
+        coz, the props are directly used in login and Home comps. They are not 
+        just forwarding to other components just for lifting up ot forwardign the state
+        without using. In case of MainHeader, it simply forwarding it to Navigation,
+        and inside navigation the state is been used. So inorder to avoid that forwarding we
+        can simply use the context here */}
+
+        {!authContext.isLoggedIn && <Login />}
+        {authContext.isLoggedIn && <Home />}
       </main>
     </React.Fragment>
   );
